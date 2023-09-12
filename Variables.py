@@ -1,7 +1,0 @@
-"""
-Variables
-"""
-
-
-
-print(10)
