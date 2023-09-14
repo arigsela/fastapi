@@ -4,7 +4,7 @@
     clean maintainable code
 """
 
-import grade_averages_service
+import grade_averages_service as grade_service
 
 homework_assignment_grades = {
     'homework_1': 85,
@@ -12,4 +12,4 @@ homework_assignment_grades = {
     'homework_3': 81
 }
 
-grade_averages_service.calculate_homework(homework_assignment_grades)
+grade_service.calculate_homework(homework_assignment_grades)
