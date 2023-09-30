@@ -27,11 +27,17 @@ class BookRequest(BaseModel):
     description: str = Field(min_lenth=1, max_length=100)
     rating: int = Field(gt=1, lt=6)
 
+    class Config:
+        json_schema_extra = {
+            'example': {
+                'id': None,
+                'title': 'A new book',
+                'author': 'codingwithroby',
+                'description': 'A new desctiption of the book',
+                'rating': 5
+            }
+        }
 
-class Config:
-    json_schema_extra = {
-
-    }
 
 BOOKS = [
     Book(1, "Computer Science PRo", "CodingWithRoby", "Very nice book", 5),
@@ -50,6 +56,22 @@ async def read_all_books():
     return BOOKS
 
 
+@app.get("/books/")
+async def read_book_by_rating(book_rating: int):
+    books_to_return = []
+    for book in BOOKS:
+        if book.rating == book_rating:
+            books_to_return.append(book)
+    return books_to_return
+
+
+@app.get("/books/{book_id}")
+async def read_book(book_id: int):
+    for book in BOOKS:
+        if book.id == book_id:
+            return book
+
+
 # POST requests #
 
 
@@ -58,6 +80,27 @@ async def create_book(book_request: BookRequest):
     # Converting request to Book object
     new_book = Book(**book_request.model_dump())
     BOOKS.append(find_book_id(new_book))
+
+
+# PUT Requests
+
+
+@app.put("/books/update_book")
+async def update_book(book: BookRequest):
+    for i in range(len(BOOKS)):
+        if BOOKS[i].id == book.id:
+            BOOKS[i] = book
+
+
+# DELETE Requests
+
+
+@app.delete("/books/{book_id}")
+async def delete_book(book_id: int):
+    for i in range(len(BOOKS)):
+        if BOOKS[i].id == book_id:
+            BOOKS.pop(i)
+            break;
 
 
 def find_book_id(book: Book):
