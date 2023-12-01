@@ -1,4 +1,4 @@
-#!/Users/ari.sela/git/arigsela/fastapi/fastapienv/bin/python3.11
+#!/home/asela/git/fastapi/fastapienv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
