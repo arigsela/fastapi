@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/ari.sela/git/arigsela/fastapi/fastapienv"
+set -gx VIRTUAL_ENV "/home/asela/git/fastapi/fastapienv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
