@@ -1,10 +1,17 @@
+import os
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 import models
 
-SQLALCHEMY_DATABASE_URL = "mysql+aiomysql://beappadmin:5zADmWBRezaKdea1@east2-beappdb1.c9ke2o0oe6ir.us-east-2.rds.amazonaws.com:3306/chores"
+DB_HOST = os.environ.get("DB_HOST", "localhost")
+DB_PORT = os.environ.get("DB_PORT", "3306")
+DB_USER = os.environ.get("DB_USER", "your_username")
+DB_PASSWORD = os.environ.get("DB_PASSWORD", "your_password")
+DB_NAME = os.environ.get("DB_NAME", "your_database")
+
+SQLALCHEMY_DATABASE_URL = f"mysql+aiomysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 engine = create_async_engine(SQLALCHEMY_DATABASE_URL)
 async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
