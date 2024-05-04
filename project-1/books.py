@@ -12,7 +12,8 @@ BOOKS = [
     {"Title": "Book six", "Author": "Author six", "Category": "history"}
 ]
 
-### GET Requests ###
+# GET Requests #
+
 
 @app.get("/books")
 def read_all_books():
@@ -48,7 +49,7 @@ async def read_category_by_query(book_author: str, category: str):
 
     return books_to_return
 
-### POST Requests ###
+# POST Requests #
 
 
 @app.post("/books/create_book")
@@ -56,7 +57,7 @@ async def create_book(new_book=Body()):
     BOOKS.append(new_book)
 
 
-## PUT Requests ###
+# PUT Requests #
 
 
 @app.put("/books/update_book")

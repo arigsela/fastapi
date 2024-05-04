@@ -4,12 +4,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from typing import List
 
-from . import schemas, database, models, auth
+import schemas, database, models, auth
 
 app = FastAPI()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-async def get_db_session() -> AsyncSession:
+async def get_db_session() -> AsyncSession: # type: ignore
     async with database.SessionLocal() as session:
         yield session
 
